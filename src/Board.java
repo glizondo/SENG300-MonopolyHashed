@@ -48,13 +48,4 @@ public class Board {
 
 	}
 
-//	public void initiateBoard() {
-//		boardCells = new ArrayList<>();
-//		for (int cell = 0; cell < limitCells; cell++) {
-//			boardCells.add(cell);
-//			
-//		}
-//
-//	}
-
 }

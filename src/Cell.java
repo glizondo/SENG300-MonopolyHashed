@@ -198,8 +198,13 @@ public class Cell {
 	}
 
 	static int propertyCell(int currentCell, String namePlayer) {
+		return responseAfterMovingToSpecificCell(currentCell, namePlayer);
+
+	}
+
+	private static int responseAfterMovingToSpecificCell(int currentCell, String namePlayer) {
 		int amount = 0;
-		if (Board.boardCells.get(currentCell).getOwnedCell() == namePlayer
+		if (Board.boardCells.get(currentCell).getOwnedCell().equalsIgnoreCase(namePlayer)
 				&& Board.boardCells.get(currentCell).getMoneyToReceive() != 0) {
 			System.out.println("TIME TO COLLECT THE RENT LEFT!");
 			amount = Board.boardCells.get(currentCell).getMoneyToReceive();
@@ -234,7 +239,6 @@ public class Cell {
 		}
 
 		return amount;
-
 	}
 
 }
