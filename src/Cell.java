@@ -92,12 +92,7 @@ public class Cell {
 
 	static int communityChestCell() throws InterruptedException {
 		System.out.println("COMMUNITY CHEST");
-		TimeUnit.SECONDS.sleep(1);
-		System.out.println("...");
-		TimeUnit.SECONDS.sleep(1);
-		System.out.println("..");
-		TimeUnit.SECONDS.sleep(1);
-		System.out.println(".");
+		waitThreeSeconds();
 		int amount = 0;
 		int random = generateRandomNumberOneOrTwo();
 		if (random == 1) {
@@ -121,14 +116,18 @@ public class Cell {
 
 	}
 
-	static int chanceCellOne() throws InterruptedException {
-		System.out.println("CHANCE CELL");
+	private static void waitThreeSeconds() throws InterruptedException {
 		TimeUnit.SECONDS.sleep(1);
 		System.out.println("...");
 		TimeUnit.SECONDS.sleep(1);
 		System.out.println("..");
 		TimeUnit.SECONDS.sleep(1);
 		System.out.println(".");
+	}
+
+	static int chanceCellOne() throws InterruptedException {
+		System.out.println("CHANCE CELL");
+		waitThreeSeconds();
 		int cell = 0;
 		int random = generateRandomNumberOneOrTwo();
 		if (random == 1) {
@@ -155,12 +154,7 @@ public class Cell {
 
 	static int chanceCellTwo() throws InterruptedException {
 		System.out.println("CHANCE CELL");
-		TimeUnit.SECONDS.sleep(1);
-		System.out.println("...");
-		TimeUnit.SECONDS.sleep(1);
-		System.out.println("..");
-		TimeUnit.SECONDS.sleep(1);
-		System.out.println(".");
+		waitThreeSeconds();
 		int amount = 0;
 		int random = generateRandomNumberOneOrTwo();
 		if (random == 1) {
