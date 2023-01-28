@@ -99,10 +99,7 @@ public class Cell {
 		TimeUnit.SECONDS.sleep(1);
 		System.out.println(".");
 		int amount = 0;
-		int max = 4;
-		int min = 1;
-		int range = max - min + 1;
-		int random = (int) (Math.random() * range) + min;
+		int random = generateRandomNumberOneOrTwo();
 		if (random == 1) {
 			System.out.println("Lucky you... You found $200!");
 			return amount = 200;
@@ -133,10 +130,7 @@ public class Cell {
 		TimeUnit.SECONDS.sleep(1);
 		System.out.println(".");
 		int cell = 0;
-		int max = 2;
-		int min = 1;
-		int range = max - min + 1;
-		int random = (int) (Math.random() * range) + min;
+		int random = generateRandomNumberOneOrTwo();
 		if (random == 1) {
 			System.out.println("Go straight to the Free Parking space");
 			return cell = 20;
@@ -151,6 +145,14 @@ public class Cell {
 
 	}
 
+	private static int generateRandomNumberOneOrTwo() {
+		int max = 2;
+		int min = 1;
+		int range = max - min + 1;
+		int random = (int) (Math.random() * range) + min;
+		return random;
+	}
+
 	static int chanceCellTwo() throws InterruptedException {
 		System.out.println("CHANCE CELL");
 		TimeUnit.SECONDS.sleep(1);
@@ -160,10 +162,7 @@ public class Cell {
 		TimeUnit.SECONDS.sleep(1);
 		System.out.println(".");
 		int amount = 0;
-		int max = 2;
-		int min = 1;
-		int range = max - min + 1;
-		int random = (int) (Math.random() * range) + min;
+		int random = generateRandomNumberOneOrTwo();
 		if (random == 1) {
 			System.out.println("A water pipe broke at one of your places! Pay $120");
 			return amount = -120;
@@ -177,10 +176,7 @@ public class Cell {
 
 	static int taxPay() {
 		int amount = 0;
-		int max = 2;
-		int min = 1;
-		int range = max - min + 1;
-		int random = (int) (Math.random() * range) + min;
+		int random = generateRandomNumberOneOrTwo();
 		if (random == 1) {
 			System.out.println("You have to pay $250 in taxes");
 			return amount = 250;
