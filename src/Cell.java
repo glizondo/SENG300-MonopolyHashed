@@ -205,22 +205,11 @@ public class Cell {
 	}
 
 	private static int responseAfterMovingToSpecificCell(int currentCell, String namePlayer) {
-		int amount = 0;
 		if (playerReceivesTheMoneyOtherPlayerLeftInCell(currentCell, namePlayer)) {
-			System.out.println("TIME TO COLLECT THE RENT LEFT!");
-			amount = Board.boardCells.get(currentCell).getMoneyToReceive();
-			Board.boardCells.get(currentCell).setMoneyToReceive(0);
-			return amount;
+			return collectMoney(currentCell);
 		}
 		if (playerPaysPropertyCellOwnedByOtherPlayer(currentCell, namePlayer)) {
-			amount = Board.boardCells.get(currentCell).getRent();
-			System.out.println("You are on the " + Board.boardCells.get(currentCell).getName()
-					+ " private property, pay the other player " + amount + " dollars");
-
-			Board.boardCells.get(currentCell).addRentForPlayer(amount);
-			System.out.println(
-					"The rent was left at the property. The money will be received once the owner passes by the property");
-			return (-1 * amount);
+			return (-1 * payMoney(currentCell));
 		}
 		if (propertyIsOpenToBeBought(currentCell)) {
 			System.out.println("Do you want to buy the " + Board.boardCells.get(currentCell).getPropertyColor()
@@ -229,15 +218,38 @@ public class Cell {
 
 			String answer = keyboard.nextLine();
 			if (answer.equalsIgnoreCase("Yes")) {
-				System.out
-						.println("You have purchased the " + Board.boardCells.get(currentCell).getName() + " property");
-				Board.boardCells.get(currentCell).setOwnedCell(namePlayer);
-				amount = Board.boardCells.get(currentCell).getPrice();
-				return (-1 * amount);
-
+				return (-1 *  playerWantsToBuyProperty(currentCell, namePlayer));
 			}
 		}
 
+		return 0;
+	}
+
+	private static int playerWantsToBuyProperty(int currentCell, String namePlayer) {
+		int amount;
+		System.out
+				.println("You have purchased the " + Board.boardCells.get(currentCell).getName() + " property");
+		Board.boardCells.get(currentCell).setOwnedCell(namePlayer);
+		amount = Board.boardCells.get(currentCell).getPrice();
+		return amount;
+	}
+
+	private static int collectMoney(int currentCell) {
+		int amount;
+		System.out.println("TIME TO COLLECT THE RENT LEFT!");
+		amount = Board.boardCells.get(currentCell).getMoneyToReceive();
+		Board.boardCells.get(currentCell).setMoneyToReceive(0);
+		return amount;
+	}
+
+	private static int payMoney(int currentCell) {
+		int amount;
+		amount = Board.boardCells.get(currentCell).getRent();
+		System.out.println("You are on the " + Board.boardCells.get(currentCell).getName()
+				+ " private property, pay the other player " + amount + " dollars");
+		Board.boardCells.get(currentCell).addRentForPlayer(amount);
+		System.out.println(
+				"The rent was left at the property. The money will be received once the owner passes by the property");
 		return amount;
 	}
 
