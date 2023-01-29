@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Player {
 
@@ -46,8 +45,6 @@ public class Player {
 
 	public void setMoney(int money) {
 			this.money = money;
-		
-
 	}
 
 	public int getCurrentCell() {
@@ -76,7 +73,6 @@ public class Player {
 
 	public void decreaseJail() {
 		remainInJail--;
-
 	}
 
 	public void printStats() {
@@ -148,11 +144,9 @@ public class Player {
 			System.out.println("Say goodbye to your wife and kids, you are going to jail for a round");
 			remainInJail = 1;
 			break;
-
 		}
 
 		switch (Board.boardCells.get(currentCell).getCellType()) {
-
 		case "free parking":
 			Cell.freeParking();
 			updateMoney(taxesCollected);
@@ -200,7 +194,6 @@ public class Player {
 			amount = Cell.propertyCell(currentCell, name);
 			updateMoney(amount);
 			break;
-
 		}
 
 	}

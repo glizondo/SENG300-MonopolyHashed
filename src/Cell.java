@@ -194,15 +194,13 @@ public class Cell {
 
 	private static int responseAfterMovingToSpecificCell(int currentCell, String namePlayer) {
 		int amount = 0;
-		if (Board.boardCells.get(currentCell).getOwnedCell().equalsIgnoreCase(namePlayer)
-				&& Board.boardCells.get(currentCell).getMoneyToReceive() != 0) {
+		if (playerReceivesTheMoneyOtherPlayerLeftInCell(currentCell, namePlayer)) {
 			System.out.println("TIME TO COLLECT THE RENT LEFT!");
 			amount = Board.boardCells.get(currentCell).getMoneyToReceive();
 			Board.boardCells.get(currentCell).setMoneyToReceive(0);
 			return amount;
 		}
-		if (!Board.boardCells.get(currentCell).getOwnedCell().equalsIgnoreCase(namePlayer)
-				&& !Board.boardCells.get(currentCell).getOwnedCell().equalsIgnoreCase("")) {
+		if (playerPaysPropertyCellOwnedByOtherPlayer(currentCell, namePlayer)) {
 			amount = Board.boardCells.get(currentCell).getRent();
 			System.out.println("You are on the " + Board.boardCells.get(currentCell).getName()
 					+ " private property, pay the other player " + amount + " dollars");
@@ -212,7 +210,7 @@ public class Cell {
 					"The rent was left at the property. The money will be received once the owner passes by the property");
 			return (-1 * amount);
 		}
-		if (Board.boardCells.get(currentCell).getOwnedCell().equalsIgnoreCase("")) {
+		if (propertyIsOpenToBeBought(currentCell)) {
 			System.out.println("Do you want to buy the " + Board.boardCells.get(currentCell).getPropertyColor()
 					+ " property " + Board.boardCells.get(currentCell).getName() + " ?");
 			System.out.println("It costs " + Board.boardCells.get(currentCell).getPrice() + " dollars");
@@ -229,6 +227,20 @@ public class Cell {
 		}
 
 		return amount;
+	}
+
+	private static boolean propertyIsOpenToBeBought(int currentCell) {
+		return Board.boardCells.get(currentCell).getOwnedCell().equalsIgnoreCase("");
+	}
+
+	private static boolean playerPaysPropertyCellOwnedByOtherPlayer(int currentCell, String namePlayer) {
+		return !Board.boardCells.get(currentCell).getOwnedCell().equalsIgnoreCase(namePlayer)
+				&& !propertyIsOpenToBeBought(currentCell);
+	}
+
+	private static boolean playerReceivesTheMoneyOtherPlayerLeftInCell(int currentCell, String namePlayer) {
+		return Board.boardCells.get(currentCell).getOwnedCell().equalsIgnoreCase(namePlayer)
+				&& Board.boardCells.get(currentCell).getMoneyToReceive() != 0;
 	}
 
 }
