@@ -177,8 +177,12 @@ public class Cell {
 	}
 
 	static int taxPay() {
-		int amount = 0;
 		int random = generateRandomNumberOneOrTwo();
+		int amount = 0;
+		return twoOptionsForTaxPay(random, amount);
+	}
+
+	private static int twoOptionsForTaxPay(int random, int amount) {
 		if (random == 1) {
 			System.out.println("You have to pay $250 in taxes");
 			return amount = 250;
