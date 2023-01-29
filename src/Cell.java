@@ -93,8 +93,13 @@ public class Cell {
 	static int communityChestCell() throws InterruptedException {
 		System.out.println("COMMUNITY CHEST");
 		waitThreeSeconds();
-		int amount = 0;
 		int random = generateRandomNumberOneOrTwo();
+		return fourOptionsForCommunityChest(random);
+
+	}
+
+	private static int fourOptionsForCommunityChest(int random) {
+		int amount = 0;
 		if (random == 1) {
 			System.out.println("Lucky you... You found $200!");
 			return amount = 200;
@@ -110,10 +115,8 @@ public class Cell {
 		if (random == 4) {
 			System.out.println("The bills have to be paid. And they are $120!");
 			return amount = -120;
-
 		}
 		return amount;
-
 	}
 
 	private static void waitThreeSeconds() throws InterruptedException {
@@ -133,12 +136,10 @@ public class Cell {
 		if (random == 1) {
 			System.out.println("Go straight to the Free Parking space");
 			return cell = 20;
-
 		}
 		if (random == 2) {
 			System.out.println("Go for a visit to jail without collecting");
 			return cell = 10;
-
 		}
 		return cell;
 
