@@ -108,10 +108,17 @@ public class Player {
 	}
 
 	public void moveActionAndConsequenceForCell() throws InterruptedException {
+		printedInfoPerTurn();
+		switchConsequenceSpecialCellsForPlayer();
+		switchConsequenceFreeParking();
+		switchConsequenceRegularCell();
+
+	}
+
+	private void printedInfoPerTurn() {
 		System.out.println("----------" + name + "----------");
 		int randomRoll = randomRoll();
 		System.out.println("Rolls the dice and gets a " + randomRoll);
-
 		currentCell = currentCell + randomRoll;
 		if (currentCell >= 0 && currentCell <= 39) {
 			setCurrentCell(currentCell);
@@ -124,11 +131,6 @@ public class Player {
 			updateMoney(1000);
 		}
 		System.out.println("You are on cell number: " + currentCell);
-
-		switchConsequenceSpecialCellsForPlayer();
-		switchConsequenceFreeParking();
-		switchConsequenceRegularCell();
-
 	}
 
 	private void switchConsequenceRegularCell() {
