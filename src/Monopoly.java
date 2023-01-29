@@ -23,10 +23,24 @@ public class Monopoly {
 		System.out.println("Do you want to play? If you want to quit just type <Quit>");
 		String answer = keyboard.nextLine();
 
+		trackingForJailAndDecideTurnPlay(keyboard, player1, player2, answer);
+	}
+
+	private static void trackingForJailAndDecideTurnPlay(Scanner keyboard, Player player1, Player player2,
+			String answer) throws InterruptedException {
 		while (!answer.equalsIgnoreCase("Quit") && answer.equalsIgnoreCase("Yes") && player1.getMoney() > 0
 				&& player2.getMoney() > 0) {
 
-			trackingForJailAndDecideTurnPlay(player1, player2);
+			if (player1.getRemainInJail() == 0) {
+				player1.moveActionAndConsequenceForCell();
+			} else {
+				player1.decreaseJail();
+			}
+			if (player2.getRemainInJail() == 0) {
+				player2.moveActionAndConsequenceForCell();
+			} else {
+				player2.decreaseJail();
+			}
 
 			player1.printStats();
 			player2.printStats();
@@ -36,19 +50,6 @@ public class Monopoly {
 
 		}
 		System.out.println("GAME OVER");
-	}
-
-	private static void trackingForJailAndDecideTurnPlay(Player player1, Player player2) throws InterruptedException {
-		if (player1.getRemainInJail() == 0) {
-			player1.moveActionAndConsequenceForCell();
-		} else {
-			player1.decreaseJail();
-		}
-		if (player2.getRemainInJail() == 0) {
-			player2.moveActionAndConsequenceForCell();
-		} else {
-			player2.decreaseJail();
-		}
 	}
 
 }
