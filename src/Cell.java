@@ -95,7 +95,6 @@ public class Cell {
 		waitThreeSeconds();
 		int random = generateRandomNumberOneOrTwo();
 		return fourOptionsForCommunityChest(random);
-
 	}
 
 	private static int fourOptionsForCommunityChest(int random) {
@@ -131,8 +130,13 @@ public class Cell {
 	static int chanceCellOne() throws InterruptedException {
 		System.out.println("CHANCE CELL");
 		waitThreeSeconds();
-		int cell = 0;
 		int random = generateRandomNumberOneOrTwo();
+		return twoOptionsForChanceCellOne(random);
+
+	}
+
+	private static int twoOptionsForChanceCellOne(int random) {
+		int cell = 0;
 		if (random == 1) {
 			System.out.println("Go straight to the Free Parking space");
 			return cell = 20;
@@ -142,7 +146,6 @@ public class Cell {
 			return cell = 10;
 		}
 		return cell;
-
 	}
 
 	private static int generateRandomNumberOneOrTwo() {
@@ -156,8 +159,12 @@ public class Cell {
 	static int chanceCellTwo() throws InterruptedException {
 		System.out.println("CHANCE CELL");
 		waitThreeSeconds();
-		int amount = 0;
 		int random = generateRandomNumberOneOrTwo();
+		return twoOptionsForChanceCellTwo(random);
+	}
+
+	private static int twoOptionsForChanceCellTwo(int random) {
+		int amount = 0;
 		if (random == 1) {
 			System.out.println("A water pipe broke at one of your places! Pay $120");
 			return amount = -120;
