@@ -112,7 +112,6 @@ public class Player {
 		switchConsequenceSpecialCellsForPlayer();
 		switchConsequenceFreeParking();
 		switchConsequenceRegularCell();
-
 	}
 
 	private void printedInfoPerTurn() {

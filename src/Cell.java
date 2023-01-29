@@ -147,15 +147,7 @@ public class Cell {
 		}
 		return cell;
 	}
-
-	private static int generateRandomNumberOneOrTwo() {
-		int max = 2;
-		int min = 1;
-		int range = max - min + 1;
-		int random = (int) (Math.random() * range) + min;
-		return random;
-	}
-
+	
 	static int chanceCellTwo() throws InterruptedException {
 		System.out.println("CHANCE CELL");
 		waitThreeSeconds();
@@ -174,6 +166,14 @@ public class Cell {
 			return amount = 150;
 		}
 		return amount;
+	}
+
+	private static int generateRandomNumberOneOrTwo() {
+		int max = 2;
+		int min = 1;
+		int range = max - min + 1;
+		int random = (int) (Math.random() * range) + min;
+		return random;
 	}
 
 	static int taxPay() {
