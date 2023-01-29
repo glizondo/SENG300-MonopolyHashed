@@ -111,7 +111,7 @@ public class Player {
 		taxesCollected += amount;
 	}
 
-	public void movePlayer() throws InterruptedException {
+	public void moveActionAndConsequenceForCell() throws InterruptedException {
 		System.out.println("----------" + name + "----------");
 		int randomRoll = randomRoll();
 		System.out.println("Rolls the dice and gets a " + randomRoll);

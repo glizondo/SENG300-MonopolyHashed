@@ -27,12 +27,12 @@ public class Monopoly {
 				&& player2.getMoney() > 0) {
 
 			if (player1.getRemainInJail() == 0) {
-				player1.movePlayer();
+				player1.moveActionAndConsequenceForCell();
 			} else {
 				player1.decreaseJail();
 			}
 			if (player2.getRemainInJail() == 0) {
-				player2.movePlayer();
+				player2.moveActionAndConsequenceForCell();
 			} else {
 				player2.decreaseJail();
 			}
