@@ -212,17 +212,21 @@ public class Cell {
 			return (-1 * payMoney(currentCell));
 		}
 		if (propertyIsOpenToBeBought(currentCell)) {
-			System.out.println("Do you want to buy the " + Board.boardCells.get(currentCell).getPropertyColor()
-					+ " property " + Board.boardCells.get(currentCell).getName() + " ?");
-			System.out.println("It costs " + Board.boardCells.get(currentCell).getPrice() + " dollars");
-
-			String answer = keyboard.nextLine();
+			String answer = askPlayerIfWantsToBuyProperty(currentCell);
 			if (answer.equalsIgnoreCase("Yes")) {
 				return (-1 *  playerWantsToBuyProperty(currentCell, namePlayer));
 			}
 		}
-
 		return 0;
+	}
+
+	private static String askPlayerIfWantsToBuyProperty(int currentCell) {
+		System.out.println("Do you want to buy the " + Board.boardCells.get(currentCell).getPropertyColor()
+				+ " property " + Board.boardCells.get(currentCell).getName() + " ?");
+		System.out.println("It costs " + Board.boardCells.get(currentCell).getPrice() + " dollars");
+
+		String answer = keyboard.nextLine();
+		return answer;
 	}
 
 	private static int playerWantsToBuyProperty(int currentCell, String namePlayer) {
