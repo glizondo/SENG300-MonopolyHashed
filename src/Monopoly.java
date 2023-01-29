@@ -26,16 +26,7 @@ public class Monopoly {
 		while (!answer.equalsIgnoreCase("Quit") && answer.equalsIgnoreCase("Yes") && player1.getMoney() > 0
 				&& player2.getMoney() > 0) {
 
-			if (player1.getRemainInJail() == 0) {
-				player1.moveActionAndConsequenceForCell();
-			} else {
-				player1.decreaseJail();
-			}
-			if (player2.getRemainInJail() == 0) {
-				player2.moveActionAndConsequenceForCell();
-			} else {
-				player2.decreaseJail();
-			}
+			trackingForJailAndDecideTurnPlay(player1, player2);
 
 			player1.printStats();
 			player2.printStats();
@@ -45,6 +36,19 @@ public class Monopoly {
 
 		}
 		System.out.println("GAME OVER");
+	}
+
+	private static void trackingForJailAndDecideTurnPlay(Player player1, Player player2) throws InterruptedException {
+		if (player1.getRemainInJail() == 0) {
+			player1.moveActionAndConsequenceForCell();
+		} else {
+			player1.decreaseJail();
+		}
+		if (player2.getRemainInJail() == 0) {
+			player2.moveActionAndConsequenceForCell();
+		} else {
+			player2.decreaseJail();
+		}
 	}
 
 }
