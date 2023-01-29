@@ -125,34 +125,13 @@ public class Player {
 		}
 		System.out.println("You are on cell number: " + currentCell);
 
-		switch (Board.boardCells.get(currentCell).getCellType()) {
-		case "community chest":
-			updateMoney(Cell.communityChestCell());
-			break;
-		case "tax income":
-			int moneyFromTaxes = Cell.taxPay();
-			chargeTaxesToPlayer(moneyFromTaxes);
-			collectedTaxes(moneyFromTaxes);
-			break;
-		case "chance one":
-			setCurrentCell(Cell.chanceCellOne());
-			break;
-		case "chance two":
-			updateMoney(Cell.chanceCellTwo());
-			break;
-		case "jail":
-			System.out.println("Say goodbye to your wife and kids, you are going to jail for a round");
-			remainInJail = 1;
-			break;
-		}
+		switchConsequenceSpecialCellsForPlayer();
+		switchConsequenceFreeParking();
+		switchConsequenceRegularCell();
 
-		switch (Board.boardCells.get(currentCell).getCellType()) {
-		case "free parking":
-			Cell.freeParking();
-			updateMoney(taxesCollected);
-			taxesCollected = 0;
-			break;
-		}
+	}
+
+	private void switchConsequenceRegularCell() {
 		switch (Board.boardCells.get(currentCell).getPropertyColor()) {
 		case "Brown":
 			int amount = Cell.propertyCell(currentCell, name);
@@ -195,7 +174,39 @@ public class Player {
 			updateMoney(amount);
 			break;
 		}
+	}
 
+	private void switchConsequenceFreeParking() {
+		switch (Board.boardCells.get(currentCell).getCellType()) {
+		case "free parking":
+			Cell.freeParking();
+			updateMoney(taxesCollected);
+			taxesCollected = 0;
+			break;
+		}
+	}
+
+	private void switchConsequenceSpecialCellsForPlayer() throws InterruptedException {
+		switch (Board.boardCells.get(currentCell).getCellType()) {
+		case "community chest":
+			updateMoney(Cell.communityChestCell());
+			break;
+		case "tax income":
+			int moneyFromTaxes = Cell.taxPay();
+			chargeTaxesToPlayer(moneyFromTaxes);
+			collectedTaxes(moneyFromTaxes);
+			break;
+		case "chance one":
+			setCurrentCell(Cell.chanceCellOne());
+			break;
+		case "chance two":
+			updateMoney(Cell.chanceCellTwo());
+			break;
+		case "jail":
+			System.out.println("Say goodbye to your wife and kids, you are going to jail for a round");
+			remainInJail = 1;
+			break;
+		}
 	}
 
 }
